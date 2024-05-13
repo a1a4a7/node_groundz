@@ -1,13 +1,8 @@
-// 假设已经有 UserModel
-const UserModel = require('../models/user');
-
-exports.getAllUsers = async (req, res) => {
-    const users = await UserModel.find();
-    res.status(200).json(users);
+// userController.js
+exports.getUser = (req, res) => {
+    res.send('Hello, User!');
 };
 
-exports.addUser = async (req, res) => {
-    const newUser = new UserModel(req.body);
-    await newUser.save();
-    res.status(201).json(newUser);
+exports.createUser = (req, res) => {
+    res.send('User created');
 };

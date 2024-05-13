@@ -6,3 +6,7 @@ setup for node -> mysql -> redis -> kafka -> docker -> (kubernetes) -> CI/CD -> 
 
 - tolerance ? failover
 - concurrency
+
+
+
+- change .env
