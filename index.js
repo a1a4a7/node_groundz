@@ -6,6 +6,8 @@ const kafkaRoute = require('./services/node-api/routes/kafkaRoutes');
 const {
   getUsersMysql, createUser
 } = require('./services/node-api/controllers/mysqlUserController');
+const mongodbUsers = require('./services/node-api/routes/mongoUsersRoutes');
+
 
 const router = express.Router();
 
@@ -31,6 +33,9 @@ app.get('/home', (req, res) => {
 
 app.get('/mysqlusers', getUsersMysql);
 app.post('/mysqlusers', createUser);
+
+/* mongoUsers */
+app.use('/api', mongodbUsers);
 
 // 定义端口并启动服务器
 /* ((((( 改 env ))))) */

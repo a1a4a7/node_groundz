@@ -1,6 +1,6 @@
 # setup for 
 [x]node(expressjs) 
--> []mysql | []mongodb -> [x]redis -> [x]kafka -> []docker -> [](kubernetes) -> []CI/CD -> []EBS  
+-> [x]mysql | []mongodb -> [x]redis -> [x]kafka -> []docker -> [](kubernetes) -> []CI/CD -> []EBS  
 
 
 # run 
@@ -35,6 +35,8 @@ brew services start mysql
 # run
 mysql -u root -p
 
+# mongodb
+brew services start mongodb/brew/mongodb-community
 
 
 
