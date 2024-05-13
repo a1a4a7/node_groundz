@@ -1,6 +1,6 @@
 # setup for 
 [x]node(expressjs) 
--> []mysql -> [x]redis -> [x]kafka -> []docker -> [](kubernetes) -> []CI/CD -> []EBS  
+-> []mysql | []mongodb -> [x]redis -> [x]kafka -> []docker -> [](kubernetes) -> []CI/CD -> []EBS  
 
 
 # run 
@@ -27,6 +27,17 @@ redis-server redis.conf
 
 # check all replicas partitions locations
 /opt/homebrew/bin/kafka-topics --describe --topic test --bootstrap-server localhost:9092
+
+
+# mysql
+brew services start mysql
+
+# run
+mysql -u root -p
+
+
+
+
 
 
 - api design 

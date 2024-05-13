@@ -3,7 +3,12 @@ const express = require('express');
 const userRoutes = require('./services/node-api/routes/userRoutes');
 const cacheRoutes = require('./services/node-api/routes/cacheRoutes');
 const kafkaRoute = require('./services/node-api/routes/kafkaRoutes');
+const {
+  getUsersMysql, createUser
+} = require('./services/node-api/controllers/mysqlUserController');
+
 const router = express.Router();
+
 const consumer = require('./services/kafka/consumer');
 
 const app = express();
@@ -23,6 +28,9 @@ app.use(express.json());
 app.get('/home', (req, res) => {
   res.send('base Nihao homepage');
 });
+
+app.get('/mysqlusers', getUsersMysql);
+app.post('/mysqlusers', createUser);
 
 // 定义端口并启动服务器
 /* ((((( 改 env ))))) */
