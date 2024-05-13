@@ -1,8 +1,10 @@
 const express = require('express');
 // const userController = require('./services/node-api/controllers/userControllers');
 const userRoutes = require('./services/node-api/routes/userRoutes');
-const cacheRoutes = require('./services/node-api/routes/cacheRoutes');  
+const cacheRoutes = require('./services/node-api/routes/cacheRoutes');
+const kafkaRoute = require('./services/node-api/routes/kafkaRoutes');
 const router = express.Router();
+const consumer = require('./services/kafka/consumer');
 
 const app = express();
 
@@ -15,6 +17,7 @@ app.use('/', cacheRoutes);
 // 路由配置
 app.use('/api/', userRoutes);
 
+app.use('/', kafkaRoute);
 app.use(express.json());
 
 app.get('/home', (req, res) => {
