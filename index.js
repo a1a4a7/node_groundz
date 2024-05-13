@@ -4,10 +4,11 @@ const userRoutes = require('./services/node-api/routes/userRoutes');
 const cacheRoutes = require('./services/node-api/routes/cacheRoutes');
 const kafkaRoute = require('./services/node-api/routes/kafkaRoutes');
 const {
-  getUsersMysql, createUser
+  getUsersMysql,
+  createUser,
 } = require('./services/node-api/controllers/mysqlUserController');
 const mongodbUsers = require('./services/node-api/routes/mongoUsersRoutes');
-
+const db = require('./databases/mongodb/mongodb');
 
 const router = express.Router();
 
@@ -35,7 +36,7 @@ app.get('/mysqlusers', getUsersMysql);
 app.post('/mysqlusers', createUser);
 
 /* mongoUsers */
-app.use('/api', mongodbUsers);
+app.use('/mongo', mongodbUsers);
 
 // 定义端口并启动服务器
 /* ((((( 改 env ))))) */
