@@ -1,7 +1,9 @@
 # setup for monorepo
 [x]node(expressjs) 
--> [x]mysql | [x]mongodb -> [x]redis -> [x]kafka|zookeeper -> [x]docker -> [](kubernetes) -> []CI/CD -> []EBS  
+-> [x]mysql | [x]mongodb -> [x]redis -> [x]kafka|zookeeper -> [x]docker -> []CI/CD -> []EBS(1-for-all soln)  
 
+Route 2: 
+-> ECR -> ECS -> codePipeline & CodeBuild(compose)
 
 # run 
 redis-server redis.conf
@@ -71,6 +73,10 @@ kafka-topics --bootstrap-server kafka:9092 --list
 docker-compose logs node-api
 
 
+# aws setup
+
+
+
 
 ------ todos ------
 redis: cache -> analytics -> (queue task) -> (rate limiter) -> pub/sub
@@ -83,3 +89,4 @@ kafka: .. via redis
 
 ------ enhancements ------
 - change .env
+- [](kubernetes)
