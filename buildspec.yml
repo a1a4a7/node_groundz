@@ -2,13 +2,25 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      docker: 19
     commands:
-      - echo Installing dependencies...
-      - npm install
+      - echo "Installing dependencies..."
+      - apt-get update -y
+      - apt-get install -y jq
+      - echo "Logging in to Docker Hub..."
+      - aws secretsmanager get-secret-value --secret-id dockerhub-auth --region us-west-2 --query 'SecretString' --output text | jq -r '.password' | docker login --username $(aws secretsmanager get-secret-value --secret-id dockerhub-auth --region us-west-2 --query 'SecretString' --output text | jq -r '.username') --password-stdin
+  pre_build:
+    commands:
+      - echo "Preparing to build Docker image..."
   build:
     commands:
-      - echo Building the project...
-      - npm run build
+      - echo "Building Docker image..."
+      - docker-compose up --build -d
+  post_build:
+    commands:
+      - echo "Build complete."
+
 artifacts:
   files:
     - '**/*'

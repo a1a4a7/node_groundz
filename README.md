@@ -82,6 +82,9 @@ git remote set-url codecommit-origin https://<smurf-at-370052297002:<password>@g
 
 
 
+aws secretsmanager create-secret --name 
+
+
 ------ todos ------
 redis: cache -> analytics -> (queue task) -> (rate limiter) -> pub/sub
 
