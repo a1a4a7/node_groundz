@@ -74,7 +74,11 @@ docker-compose logs node-api
 
 
 # aws setup
+pip install awsebcli
 
+aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > MyKeyPair.pem
+
+git remote set-url codecommit-origin https://<smurf-at-370052297002:<password>@git-codecommit.us-west-2.amazonaws.com/v1/repos/origin
 
 
 
