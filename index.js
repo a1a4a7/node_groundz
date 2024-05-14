@@ -16,8 +16,15 @@ const consumer = require('./services/kafka/consumer');
 
 const app = express();
 
+// 定义端口
+const PORT = process.env.PORT || 3000;
+
 // 中间件配置
 app.use(express.json()); // 用于解析 JSON 格式的请求体
+
+app.get('/', (req, res) => {
+  res.send('Welcome to the root route!');
+});
 
 // 集成 Redis 测试路由
 app.use('/', cacheRoutes);
@@ -39,9 +46,7 @@ app.post('/mysqlusers', createUser);
 app.use('/mongo', mongodbUsers);
 
 // 定义端口并启动服务器
-/* ((((( 改 env ))))) */
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
 

@@ -1,11 +1,14 @@
 const redis = require('redis');
-const client = redis.createClient({
-    url: 'redis://localhost:6379' // 这里假设你的 Redis 服务器运行在本地，默认端口为 6379
+
+const redisClient = redis.createClient({
+  host: process.env.REDIS_HOST || 'redis',
+  port: 6379
 });
 
-client.on('error', (err) => console.log('Redis Client Error', err));
+redisClient.on('connect', function() {
+  console.log('Connected to Redis');
+});
 
-client.connect();
-
-module.exports = client;
-
+redisClient.on('error', function (err) {
+  console.log('Redis Client Error ' + err);
+});

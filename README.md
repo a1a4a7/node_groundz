@@ -1,6 +1,6 @@
-# setup for 
+# setup for monorepo
 [x]node(expressjs) 
--> [x]mysql | [x]mongodb -> [x]redis -> [x]kafka|zookeeper -> []docker -> [](kubernetes) -> []CI/CD -> []EBS  
+-> [x]mysql | [x]mongodb -> [x]redis -> [x]kafka|zookeeper -> [x]docker -> [](kubernetes) -> []CI/CD -> []EBS  
 
 
 # run 
@@ -40,7 +40,14 @@ brew services start mongodb/brew/mongodb-community
 # status check 
 brew services list
 
+# docker build
+docker-compose up --build
 
+# docker remove
+docker-compose down
+
+# zookeeper cleanup
+rm -rf /opt/homebrew/Cellar/zookeeper/data/*
 
 - api design 
 - db schema (mono) 
@@ -49,16 +56,26 @@ brew services list
 - tolerance ? failover
 - concurrency
 
+# kafka-1 enter kafka container
+docker exec -it <kafka-1 #ID> /bin/bash
+docker exec -it db3a36b9969d481d0d7d9bd21dd10c49643b2fa83501f6afaf4a7fdf33430906 /bin/bash
+
+# kafka create topic
+kafka-topics --bootstrap-server kafka:9092 --create --topic your-topic-name --partitions 1 --replication-factor 1
+
+# kafka ls topics
+kafka-topics --bootstrap-server kafka:9092 --list
 
 
-
-
+# debug docker 
+docker-compose logs node-api
 
 
 
 ------ todos ------
 redis: cache -> analytics -> (queue task) -> (rate limiter) -> pub/sub
 
+kafka: .. via redis 
 
 
 
