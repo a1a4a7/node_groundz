@@ -9,7 +9,7 @@ phases:
   pre_build:
     commands:
       - echo "Logging in to Docker Hub..."
-      - echo "Ydckr_pat_bEdD4_1FV6l60lQ_G-PBUmoHVZU" | docker login --username a1a4a7 --password-stdin
+      - echo "Ydckr_pat_bEdD4_1FV6l60lQ_G-PBUmoHVZU" | docker login --username kitho147@gmail.com --password-stdin
   build:
     commands:
       - echo "Building Docker image..."
