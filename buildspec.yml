@@ -11,6 +11,8 @@ phases:
       - echo "Retrieving DockerHub credentials from Secrets Manager..."
       - export DOCKER_USERNAME=$(aws secretsmanager get-secret-value --secret-id dockerhub-auth --region us-east-1 --query 'SecretString' --output text | jq -r '.username')
       - export DOCKER_PASSWORD=$(aws secretsmanager get-secret-value --secret-id dockerhub-auth --region us-east-1 --query 'SecretString' --output text | jq -r '.password')
+      - echo $DOCKER_USERNAME
+      - echo $DOCKER_PASSWORD  # 注释掉或删除这一行
       - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
   build:
     commands:
