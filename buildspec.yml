@@ -22,11 +22,3 @@ phases:
 artifacts:
   files:
     - '**/*'
-
-eb_codebuild_settings:
-  Timeout: 60
-  CodeBuildServiceRole: "arn:aws:iam::370052297002:role/codebuild-service-role"
-  Image: "aws/codebuild/standard:5.0"
-  ComputeType: "BUILD_GENERAL1_SMALL"
-  artifacts:
-    files: '**/*'
