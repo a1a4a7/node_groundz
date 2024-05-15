@@ -26,7 +26,7 @@ artifacts:
 eb_codebuild_settings:
   Timeout: 60
   CodeBuildServiceRole: "arn:aws:iam::370052297002:role/codebuild-service-role"
-  Image: "aws/codebuild/standard:4.0" # 改成包含 yum 的镜像
+  Image: "aws/codebuild/eb-java-7-amazonlinux-64:2.4.3"
   ComputeType: "BUILD_GENERAL1_SMALL"
   artifacts:
     files: '**/*'
