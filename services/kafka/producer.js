@@ -1,4 +1,4 @@
-const kafka = require('kafka-node');
+/* const kafka = require('kafka-node');
 const client = new kafka.KafkaClient({ kafkaHost: 'kafka:9092' });
 const Producer = kafka.Producer;
 const producer = new Producer(client);
@@ -45,3 +45,4 @@ const sendMessage = (message, topic) => {
 };
 
 module.exports = { sendMessage };
+ */

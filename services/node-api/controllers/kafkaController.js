@@ -1,4 +1,4 @@
-// messageController.js
+/* // messageController.js
 const { sendMessage } = require('../../kafka/producer');
 
 exports.send = (req, res) => {
@@ -6,3 +6,4 @@ exports.send = (req, res) => {
     .then(() => res.status(200).send('Message sent successfully'))
     .catch(err => res.status(500).send(err.message));
 };
+ */

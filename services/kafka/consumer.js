@@ -1,4 +1,4 @@
-// kafkaConsumer.js
+/* // kafkaConsumer.js
 const kafka = require('kafka-node');
 const client = new kafka.KafkaClient({kafkaHost: process.env.KAFKA_HOST || 'kafka:9092'});
 const Consumer = kafka.Consumer;
@@ -29,3 +29,4 @@ consumer.on('error', function (err) {
 });
 
 module.exports = consumer;
+ */
