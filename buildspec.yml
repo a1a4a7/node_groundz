@@ -8,7 +8,11 @@ phases:
       - yum install -y jq
   pre_build:
     commands:
-      - echo "Preparing to build Docker image..."
+      - echo "Retrieving DockerHub credentials from Secrets Manager..."
+      - export DOCKER_USERNAME=$(aws secretsmanager get-secret-value --secret-id dockerhub-auth --region us-east-1 --query 'SecretString' --output text | jq -r '.username')
+      - export DOCKER_PASSWORD=$(aws secretsmanager get-secret-value --secret-id dockerhub-auth --region us-east-1 --query 'SecretString' --output text | jq -r '.password')
+      - echo "DockerHub username: $DOCKER_USERNAME"
+      - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
   build:
     commands:
       - echo "Building Docker image..."
