@@ -5,32 +5,6 @@ services:
       dockerfile: services/node-api/Dockerfile
     ports:
       - '3000:3000'
-    depends_on:
-      - redis
-      - mysql
-    environment:
-      REDIS_HOST: redis
-      MYSQL_HOST: mysql
-      MYSQL_USER: root
-      MYSQL_PASSWORD: ImPassword123@
-      MYSQL_DATABASE: node_groundz
-    networks:
-      - my_network
-
-  redis:
-    image: redis:latest
-    ports:
-      - '6379:6379'
-    networks:
-      - my_network
-
-  mysql:
-    image: mysql:latest
-    ports:
-      - '3306:3306'
-    environment:
-      MYSQL_ROOT_PASSWORD: ImPassword123@
-      MYSQL_DATABASE: node_groundz
     networks:
       - my_network
 

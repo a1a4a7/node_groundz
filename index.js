@@ -1,22 +1,22 @@
 const express = require('express');
 // const userController = require('./services/node-api/controllers/userControllers');
-const userRoutes = require('./services/node-api/routes/userRoutes');
-const cacheRoutes = require('./services/node-api/routes/cacheRoutes');
+// const userRoutes = require('./services/node-api/routes/userRoutes');
+// const cacheRoutes = require('./services/node-api/routes/cacheRoutes');
 // const kafkaRoute = require('./services/node-api/routes/kafkaRoutes');
-const {
-  getUsersMysql,
-  createUser,
-} = require('./services/node-api/controllers/mysqlUserController');
+// const {
+//   getUsersMysql,
+//   createUser,
+// } = require('./services/node-api/controllers/mysqlUserController');
 // const mongodbUsers = require('./services/node-api/routes/mongoUsersRoutes');
 // const db = require('./databases/mongodb/mongodb');
 
-const router = express.Router();
+// const router = express.Router();
 
-const consumer = require('./services/kafka/consumer');
+// const consumer = require('./services/kafka/consumer');
 
 const app = express();
 
-const bruh = 1234;
+// const bruh = 1234;
 // 
 // 定义端口
 const PORT = process.env.PORT || 3000;
@@ -25,24 +25,20 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json()); // 用于解析 JSON 格式的请求体
 
 app.get('/', (req, res) => {
-  res.send('Welcome to the root route!');
+  res.send('Welcome to the root root root !');
 });
 
 // 集成 Redis 测试路由
-app.use('/', cacheRoutes);
+// app.use('/', cacheRoutes);
 
 // 路由配置
-app.use('/api/', userRoutes);
+// app.use('/api/', userRoutes);
 
 // app.use('/', kafkaRoute);
-app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('base Nihao homepage');
-});
 
-app.get('/mysqlusers', getUsersMysql);
-app.post('/mysqlusers', createUser);
+// app.get('/mysqlusers', getUsersMysql);
+// app.post('/mysqlusers', createUser);
 
 /* mongoUsers */
 // app.use('/mongo', mongodbUsers);
