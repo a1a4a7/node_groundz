@@ -6,11 +6,13 @@ phases:
       - echo "Installing dependencies..."
       - yum update -y
       - yum install -y jq
-      - echo "Logging in to Docker Hub..."
-      - aws secretsmanager get-secret-value --secret-id dockerhub-auth --region us-west-2 --query 'SecretString' --output text | jq -r '.password' | docker login --username $(aws secretsmanager get-secret-value --secret-id dockerhub-auth --region us-west-2 --query 'SecretString' --output text | jq -r '.username') --password-stdin
   pre_build:
     commands:
-      - echo "Preparing to build Docker image..."
+      - echo "Retrieving DockerHub credentials from Secrets Manager..."
+      - export DOCKER_USERNAME=$(aws secretsmanager get-secret-value --secret-id dockerhub-auth --region us-east-1 --query 'SecretString' --output text | jq -r '.username')
+      - export DOCKER_PASSWORD=$(aws secretsmanager get-secret-value --secret-id dockerhub-auth --region us-east-1 --query 'SecretString' --output text | jq -r '.password')
+      - echo "DockerHub username: $DOCKER_USERNAME"
+      - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
   build:
     commands:
       - echo "Building Docker image..."
@@ -18,7 +20,6 @@ phases:
   post_build:
     commands:
       - echo "Build complete."
-
 artifacts:
   files:
     - '**/*'
