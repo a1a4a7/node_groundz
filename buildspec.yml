@@ -4,8 +4,8 @@ phases:
   install:
     commands:
       - echo "Installing dependencies..."
-      - yum update -y
-      - yum install -y jq
+      - apt-get update -y
+      - apt-get install -y jq
       - echo "Logging in to Docker Hub..."
       - aws secretsmanager get-secret-value --secret-id dockerhub-auth --region us-west-2 --query 'SecretString' --output text | jq -r '.password' | docker login --username $(aws secretsmanager get-secret-value --secret-id dockerhub-auth --region us-west-2 --query 'SecretString' --output text | jq -r '.username') --password-stdin
   pre_build:
@@ -26,7 +26,7 @@ artifacts:
 eb_codebuild_settings:
   Timeout: 60
   CodeBuildServiceRole: "arn:aws:iam::370052297002:role/codebuild-service-role"
-  Image: "aws/codebuild/eb-java-7-amazonlinux-64:2.4.3"
+  Image: "aws/codebuild/standard:5.0"
   ComputeType: "BUILD_GENERAL1_SMALL"
   artifacts:
     files: '**/*'
