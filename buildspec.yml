@@ -8,8 +8,7 @@ phases:
       - yum install -y jq
   pre_build:
     commands:
-      - echo "Logging in to Docker Hub..."
-      - echo "Ydckr_pat_bEdD4_1FV6l60lQ_G-PBUmoHVZU" | docker login --username kitho147@gmail.com --password-stdin
+      - echo "Preparing to build Docker image..."
   build:
     commands:
       - echo "Building Docker image..."
