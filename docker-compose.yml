@@ -1,17 +1,15 @@
 services:
   node-api:
-    build: 
-      context: .  # 当前目录，确保包含 index.js
+    build:
+      context: . # 当前目录，确保包含 index.js
       dockerfile: services/node-api/Dockerfile
     ports:
-      - "3000:3000"
+      - '3000:3000'
     depends_on:
       - redis
-      - mongodb
       - mysql
     environment:
       REDIS_HOST: redis
-      MONGO_HOST: mongodb
       MYSQL_HOST: mysql
       MYSQL_USER: root
       MYSQL_PASSWORD: ImPassword123@
@@ -22,21 +20,14 @@ services:
   redis:
     image: redis:latest
     ports:
-      - "6379:6379"
-    networks:
-      - my_network
-
-  mongodb:
-    image: mongo:latest
-    ports:
-      - "27017:27017"
+      - '6379:6379'
     networks:
       - my_network
 
   mysql:
     image: mysql:latest
     ports:
-      - "3306:3306"
+      - '3306:3306'
     environment:
       MYSQL_ROOT_PASSWORD: ImPassword123@
       MYSQL_DATABASE: node_groundz
